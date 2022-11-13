@@ -17,7 +17,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Vazirmatn, sans-serif !important;
+  font-family: "Vazirmatn", "Yekan", sans-serif !important;
+  direction: rtl !important;
   font-size: 12px;
   background-color: #ecf0f3;
   color: #a0a5a8;
