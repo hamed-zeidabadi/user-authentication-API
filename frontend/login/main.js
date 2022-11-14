@@ -87,3 +87,37 @@ const danger = () => {
     timer: 5000,
   });
 };
+
+// register
+
+function validateEmail(email) {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}
+
+function validatePassword(pas1, pas2) {
+  if (pas1 == pas2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validateName(name) {
+  if (name.trim().length < 3) {
+    return false;
+  } else {
+    return false;
+  }
+}
+
+let registerBtn = document.querySelector("#register-btn");
+let formName = document.getElementById("form_name");
+let formEmail = document.getElementById("form_email");
+let formPass1 = document.getElementById("form_pass1");
+let formPass2 = document.getElementById("form_pass2");
+
+registerBtn.addEventListener("click", () => {
+  console.log(formName.value);
+  success();
+});
