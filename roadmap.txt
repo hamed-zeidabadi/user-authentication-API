@@ -4,6 +4,5 @@ backend auth
 
 
 https://codepen.io/RamiAlmofleh/pen/KKorLRy
-https://codepen.io/SebRoc/pen/yLKYQey
-
-
+https://codepen.io/Liviere/pen/PoQPYww
+https://freshman.tech/wikipedia-javascript/
