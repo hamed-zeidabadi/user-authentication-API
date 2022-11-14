@@ -1,6 +1,12 @@
-/* hint: Your support on Patreon will allow me to focus on more useful content for you, whether it be tutorials, blogs, vlogs, behind the scenes, and more.
-https://patreon.com/ramialmofleh?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=creatorshare_creator
-*/
+/* root color */
+:root {
+  --green-color: #11999e;
+  --white-color: #f9f9f9;
+  --silver-color: #ecf0f3;
+  --grey-color: #d1d9e6;
+}
+
+/* css reset */
 *,
 *::after,
 *::before {
@@ -20,11 +26,10 @@ body {
   font-family: "Vazirmatn", "Yekan", sans-serif !important;
   direction: rtl !important;
   font-size: 12px;
-  background-color: #ecf0f3;
+  background-color: var(--silver-color);
   color: #a0a5a8;
 }
 
-/**/
 .main {
   position: relative;
   width: 1000px;
@@ -32,8 +37,9 @@ body {
   min-height: 600px;
   height: 600px;
   padding: 25px;
-  background-color: #ecf0f3;
-  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+  background-color: var(--silver-color);
+  box-shadow: 10px 10px 10px var(--grey-color),
+    -10px -10px 10px var(--white-color);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -67,7 +73,7 @@ body {
   width: 600px;
   height: 100%;
   padding: 25px;
-  background-color: #ecf0f3;
+  background-color: var(--silver-color);
   transition: 1.25s;
 }
 
@@ -100,14 +106,16 @@ body {
   letter-spacing: 0.15px;
   border: none;
   outline: none;
-  font-family: "Montserrat", sans-serif;
-  background-color: #ecf0f3;
+  font-family: "Vazirmatn", "Yekan", sans-serif !important;
+  background-color: var(--silver-color);
   transition: 0.25s ease;
   border-radius: 8px;
-  box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #f9f9f9;
+  box-shadow: inset 2px 2px 4px var(--grey-color),
+    inset -2px -2px 4px var(--white-color);
 }
 .form__input:focus {
-  box-shadow: inset 4px 4px 4px #d1d9e6, inset -4px -4px 4px #f9f9f9;
+  box-shadow: inset 4px 4px 4px var(--grey-color),
+    inset -4px -4px 4px var(--white-color);
 }
 .form__span {
   margin-top: 30px;
@@ -119,10 +127,15 @@ body {
   margin-top: 25px;
   border-bottom: 1px solid #a0a5a8;
   line-height: 2;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+.form__link:hover {
+  color: var(--green-color);
 }
 
 .title {
-  font-size: 34px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 3;
   color: #181818;
@@ -136,21 +149,21 @@ body {
 }
 
 .button {
-  width: 180px;
+  width: 155px;
   height: 50px;
   border-radius: 25px;
   margin-top: 50px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 1.15px;
-  background-color: #4b70e2;
-  color: #f9f9f9;
-  box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #f9f9f9;
+  background-color: var(--green-color);
+  color: var(--white-color);
+  box-shadow: 8px 8px 16px var(--grey-color), -8px -8px 16px var(--white-color);
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
-/**/
 .a-container {
   z-index: 100;
   left: calc(100% - 600px);
@@ -173,17 +186,18 @@ body {
   padding: 50px;
   z-index: 200;
   transition: 1.25s;
-  background-color: #ecf0f3;
+  background-color: var(--silver-color);
   overflow: hidden;
-  box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #f9f9f9;
+  box-shadow: 4px 4px 10px var(--grey-color), -4px -4px 10px var(--white-color);
 }
 .switch__circle {
   position: absolute;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background-color: #ecf0f3;
-  box-shadow: inset 8px 8px 12px #d1d9e6, inset -8px -8px 12px #f9f9f9;
+  background-color: var(--silver-color);
+  box-shadow: inset 8px 8px 12px var(--grey-color),
+    inset -8px -8px 12px var(--white-color);
   bottom: -60%;
   left: -60%;
   transition: 1.25s;
@@ -208,18 +222,17 @@ body {
   cursor: pointer;
 }
 .switch__button:hover {
-  box-shadow: 6px 6px 10px #d1d9e6, -6px -6px 10px #f9f9f9;
+  box-shadow: 6px 6px 10px var(--grey-color), -6px -6px 10px var(--white-color);
   transform: scale(0.985);
   transition: 0.25s;
 }
 .switch__button:active,
 .switch__button:focus {
-  box-shadow: 2px 2px 6px #d1d9e6, -2px -2px 6px #f9f9f9;
+  box-shadow: 2px 2px 6px var(--grey-color), -2px -2px 6px var(--white-color);
   transform: scale(0.97);
   transition: 0.25s;
 }
 
-/**/
 .is-txr {
   left: calc(100% - 400px);
   transition: 1.25s;
@@ -258,4 +271,7 @@ body {
   50% {
     width: 500px;
   }
+}
+.form__input {
+  text-align: center;
 }
