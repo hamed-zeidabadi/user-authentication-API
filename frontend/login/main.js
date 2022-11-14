@@ -66,33 +66,32 @@ const Noti = ({ icon = "success", text, timer = 4000 }) => {
     noti_alert.remove();
   }, timer);
 };
-const success = () => {
+const success = (text) => {
   Noti({
-    text: "اطلاعات با موفقیت ثبت شد",
+    text: text,
     icon: "success",
-    timer: 5000,
+    timer: 3000,
   });
 };
-const info = () => {
+const info = (text) => {
   Noti({
-    text: "ایمیل وارد شده اشتباه میباشد",
+    text: text,
     icon: "info",
-    timer: 5000,
+    timer: 3000,
   });
 };
-const danger = () => {
+const danger = (text) => {
   Noti({
-    text: "نام کاربری اشتباه میباشد",
+    text: text,
     icon: "danger",
-    timer: 5000,
+    timer: 3000,
   });
 };
 
 // register
-
 function validateEmail(email) {
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
+  const isEmail = /^[a-z0-9.]{1,64}@[a-z0-9.]{1,64}$/i.test(email);
+  return isEmail;
 }
 
 function validatePassword(pas1, pas2) {
@@ -107,7 +106,7 @@ function validateName(name) {
   if (name.trim().length < 3) {
     return false;
   } else {
-    return false;
+    return true;
   }
 }
 
@@ -118,6 +117,15 @@ let formPass1 = document.getElementById("form_pass1");
 let formPass2 = document.getElementById("form_pass2");
 
 registerBtn.addEventListener("click", () => {
-  console.log(formName.value);
-  success();
+  if (!validateEmail(formEmail.value)) {
+    danger("ایمیل وارد شده معتبر نمیباشد !");
+  } else if (!validateName(formName.value)) {
+    danger("نام  باید حداقل 3 حرف باشد !");
+  } else if (!validatePassword(formPass1.value, formPass2.value)) {
+    danger("کلمه عبور یکسان نیست !");
+  } else if (formPass1.value.trim().length < 6) {
+    danger(" کلمه عبور حداقل  6 کاراکتر باشد");
+  } else {
+    success("ثبت نام با موفقیت انجام شد");
+  }
 });
