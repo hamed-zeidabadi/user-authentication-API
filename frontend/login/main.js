@@ -129,3 +129,19 @@ registerBtn.addEventListener("click", () => {
     success("ثبت نام با موفقیت انجام شد");
   }
 });
+
+//login
+let loginBtn = document.querySelector("#login-btn");
+let formPassLogin = document.getElementById("form_pass_login");
+let formEmailLogin = document.getElementById("form_email_login");
+loginBtn.addEventListener("click", () => {
+  if (!validateEmail(formEmailLogin.value)) {
+    danger("ایمیل وارد شده معتبر نمیباشد !");
+  } else if (formPassLogin.value.trim().length < 1) {
+    danger("لطفا کلمه عبور را وارد کنید !");
+  } else if (false) {
+    danger("نام کاربری یا کلمه عبور اشتباه است !");
+  } else {
+    success("ورود به سایت با موفقیت انجام شد");
+  }
+});
