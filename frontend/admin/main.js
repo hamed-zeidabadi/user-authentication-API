@@ -1,5 +1,5 @@
 let timeout = null;
-let language = "en";
+let language = "fa";
 let currentSearch = "";
 let searchId = null;
 
@@ -104,6 +104,7 @@ function toggleTheme(button) {
 
 function selectLanguage(value) {
   language = value;
+
   const randomLink = `https://${language}.wikipedia.org/wiki/Special:Random`;
   const randomButton = document.querySelector(".link-button");
   if (randomButton) randomButton.setAttribute("href", randomLink);
@@ -133,6 +134,7 @@ async function search(value, id) {
 					<li><a
 						href="https://${language}.wikipedia.org/?curid=${page.pageid}"
 						class="card"
+            target="_blank"
 					>
 						<div class="image ${!page.thumbnail ? "default" : ""}">
 						${
