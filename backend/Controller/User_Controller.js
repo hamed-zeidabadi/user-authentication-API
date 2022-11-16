@@ -1,9 +1,9 @@
-import User from "./../Models/UserModel";
-import bcrypt from "bcryptjs";
-import JWT from "jsonwebtoken";
-import Joi from "joi";
+const User = require("./../Models/User_Model");
+const bcrypt = require("bcryptjs");
+const JWT = require("jsonwebtoken");
+const Joi = require("joi");
 
-const createUser = async (req, res, next) => {
+exports.register = async (req, res, next) => {
   try {
     const { email, username, password } = await req.body;
 
@@ -47,7 +47,7 @@ const createUser = async (req, res, next) => {
   }
 };
 
-const loginUser = async (req, res, next) => {
+exports.login = async (req, res, next) => {
   try {
     const { email, password } = await req.body;
 
@@ -97,5 +97,3 @@ const loginUser = async (req, res, next) => {
     console.log("ERORR : ", err);
   }
 };
-
-export { createUser, loginUser };
