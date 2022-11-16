@@ -13,8 +13,8 @@ require("dotenv").config();
 
 // Database connection
 
-// const connectDB = require("./db").connectDB;
-// connectDB();
+const connectDB = require("./db").connectDB;
+connectDB();
 
 // Add Router
 
