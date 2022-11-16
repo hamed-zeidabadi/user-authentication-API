@@ -1,15 +1,17 @@
 //Import Libraries
-
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import * as dotenv from "dotenv";
+import connectDB from "./db";
+import userRouter from "./Routes/User_Router";
 const app = express();
 
-// Add Middleware
-const cors = require("cors");
-const helmet = require("helmet");
+// Add Middleware1
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-require("dotenv").config();
+dotenv.config();
 
 // Database connection
 
@@ -17,9 +19,7 @@ const connectDB = require("./db").connectDB;
 connectDB();
 
 // Add Router
-
-// const User_Route = require("./Routes/User.Router.js");
-// app.use("/api", User_Route);
+app.use("/api", userRouter);
 
 // Running Server
 const PORT = process.env.PORT || 5000;
