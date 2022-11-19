@@ -6,3 +6,10 @@ backend auth
 https://codepen.io/RamiAlmofleh/pen/KKorLRy
 https://codepen.io/Liviere/pen/PoQPYww
 https://freshman.tech/wikipedia-javascript/
+
+
+{
+	"email": "hamed2@gmail.com",
+	"username": "hamed2",
+	"password": "123456"
+}

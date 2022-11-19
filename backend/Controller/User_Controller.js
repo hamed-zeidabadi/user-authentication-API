@@ -9,39 +9,39 @@ exports.register = async (req, res, next) => {
 
     // verify username
     const user = await User.findOne({ email });
-    if (user) {
-      res.status(400).json({
-        message: "email does exist ! ",
-      });
+    if (user) res.status(400).json({ message: "email does exist ! " });
 
-      // data Validation
-      const Schema = Joi.object({
-        email: Joi.string().min(3).max(255).email().required(),
-        username: Joi.string().min(2).max(255).required(),
-        password: Joi.string().min(6).max(255).required(),
-      });
-      const result = await Schema.validate({
-        email,
-        username,
-        password,
-      });
-      if (result.error) return res.send(result.error.message);
+    // data Validation
 
-      // hash password
-      const salt = await bcrypt.genSalt(10);
-      const hashPassword = await bcrypt.hashSync(password, salt);
+    const Schema = Joi.object({
+      email: Joi.string().min(3).max(255).email().required(),
+      username: Joi.string().min(2).max(255).required(),
+      password: Joi.string().min(6).max(255).required(),
+    });
+    const result = await Schema.validate({
+      email,
+      username,
+      password,
+    });
+    if (result.error) return res.send(result.error.message);
 
-      // create new user
-      const newUser = await new User({
-        username,
-        password: hashPassword,
-      });
+    // hash password
 
-      newUser.save();
-      res.status(200).json(newUser);
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hashSync(password, salt);
 
-      next();
-    }
+    // create new user
+
+    const newUser = await new User({
+      email,
+      username,
+      password: hashPassword,
+    });
+
+    newUser.save();
+    res.status(200).json(newUser);
+
+    next();
   } catch (err) {
     console.log("ERORR : ", err);
   }
@@ -49,9 +49,8 @@ exports.register = async (req, res, next) => {
 
 exports.allUser = async (req, res, next) => {
   try {
-
     // verify username
-    const users = await User.find({});
+    const users = await User.find({}).select("-password");
     if (!users) {
       res.status(404).json({
         message: "user does not exist ! ",
@@ -64,7 +63,6 @@ exports.allUser = async (req, res, next) => {
     console.log("ERORR : ", err);
   }
 };
-
 
 exports.login = async (req, res, next) => {
   try {
