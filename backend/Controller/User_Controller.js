@@ -1,4 +1,4 @@
-const User = require("./../Models/User_Model");
+const { User } = require("./../Models/User_Model");
 const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
 const Joi = require("joi");
@@ -46,6 +46,25 @@ exports.register = async (req, res, next) => {
     console.log("ERORR : ", err);
   }
 };
+
+exports.allUser = async (req, res, next) => {
+  try {
+
+    // verify username
+    const users = await User.find({});
+    if (!users) {
+      res.status(404).json({
+        message: "user does not exist ! ",
+      });
+    }
+    res.status(200).json({ users });
+
+    next();
+  } catch (err) {
+    console.log("ERORR : ", err);
+  }
+};
+
 
 exports.login = async (req, res, next) => {
   try {
