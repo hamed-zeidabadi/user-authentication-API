@@ -126,7 +126,23 @@ registerBtn.addEventListener("click", () => {
   } else if (formPass1.value.trim().length < 6) {
     danger(" کلمه عبور حداقل  6 کاراکتر باشد");
   } else {
-    success("ثبت نام با موفقیت انجام شد");
+    fetch("http://localhost:5000/api/register", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      //make sure to serialize your JSON body
+      body: JSON.stringify({
+        email: formEmail,
+        username: formName,
+        password: formPass1,
+      }),
+    }).then((response) => {
+      //do something awesome that makes the world a better place
+      success("ثبت نام با موفقیت انجام شد");
+    });
   }
 });
 
