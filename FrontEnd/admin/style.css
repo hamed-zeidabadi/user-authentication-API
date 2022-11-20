@@ -20,6 +20,17 @@
   --shadow: rgba(0, 0, 0, 0.45);
 }
 
+/* css reset */
+*,
+*::after,
+*::before,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
 @media (max-width: 2000px) {
   html {
     font-size: 16px;
@@ -32,10 +43,6 @@
   }
 }
 
-body {
-  margin: 0;
-}
-
 #body {
   margin: 0;
   background-color: var(--clr-background);
@@ -44,6 +51,8 @@ body {
   justify-content: space-between;
   min-height: 100vh;
   color: var(--clr-main);
+  font-family: "Vazirmatn", "Yekan", sans-serif !important;
+  direction: rtl !important;
 }
 
 @media (max-height: 400px) {
@@ -112,6 +121,7 @@ body {
   border: none;
   outline: none;
   color: var(--clr-main);
+  text-align: center;
 }
 
 .search-container > svg {
