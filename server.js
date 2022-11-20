@@ -1,6 +1,7 @@
 //Import Libraries
 const express = require("express");
 const app = express();
+const path = require("path");
 
 // Add Middleware
 const cors = require("cors");
@@ -18,7 +19,7 @@ connectDB();
 
 const User_Route = require("./Routes/User_Router");
 app.use("/api", User_Route);
-
+app.use("/", express.static(path.join(__dirname, "public")));
 // Running Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server is Running On ${PORT}`));
