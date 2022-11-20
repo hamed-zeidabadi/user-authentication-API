@@ -142,6 +142,7 @@ registerBtn.addEventListener("click", () => {
     }).then((response) => {
       //do something awesome that makes the world a better place
       success("ثبت نام با موفقیت انجام شد");
+      console.log("response:", response);
     });
   }
 });
