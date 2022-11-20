@@ -132,17 +132,19 @@ registerBtn.addEventListener("click", () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-
-      //make sure to serialize your JSON body
       body: JSON.stringify({
         email: String(formEmail.value),
         username: String(formName.value),
         password: String(formPass1.value),
       }),
     }).then((response) => {
-      //do something awesome that makes the world a better place
-      success("ثبت نام با موفقیت انجام شد");
-      console.log("response:", response);
+      if (response.status) {
+        success("ثبت نام با موفقیت انجام شد");
+        window.location.replace("http://127.0.0.1:5500/FrontEnd/admin/");
+      } else {
+        danger("اووپس ! مشکلی پیش اومده !");
+        console.log("response:", response);
+      }
     });
   }
 });
