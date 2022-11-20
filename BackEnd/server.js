@@ -16,11 +16,9 @@ const connectDB = require("./db").connectDB;
 connectDB();
 
 // Add Router
-
 const User_Route = require("./Routes/User_Router");
 app.use("/api", User_Route);
 app.use("/", express.static(path.join(__dirname, "public")));
-app.use("/admin", express.static(path.join(__dirname, "public/admin")));
 app.use(express.static(path.join("./public")));
 
 //The 404 Route (ALWAYS Keep this as the last route)
