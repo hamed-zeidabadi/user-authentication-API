@@ -6,7 +6,7 @@ const path = require("path");
 // Add Middleware
 const cors = require("cors");
 const helmet = require("helmet");
-app.use(cors());
+app.use(cors({ credentials: true, origin: true }));
 app.use(helmet());
 app.use(express.json());
 require("dotenv").config();

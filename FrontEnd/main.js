@@ -135,9 +135,9 @@ registerBtn.addEventListener("click", () => {
 
       //make sure to serialize your JSON body
       body: JSON.stringify({
-        email: formEmail,
-        username: formName,
-        password: formPass1,
+        email: "formEmail",
+        username: " formName",
+        password: "formPass1",
       }),
     }).then((response) => {
       //do something awesome that makes the world a better place
