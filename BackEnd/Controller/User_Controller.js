@@ -39,8 +39,26 @@ exports.register = async (req, res, next) => {
     });
 
     newUser.save();
-    res.status(200).json(newUser);
 
+    // set JWT
+    const secret = process.env.SECRET || "HaMeD_Zeidabadi";
+
+    const payload = {
+      id: newUser.id,
+      email: newUser.email,
+    };
+
+    const token = JWT.sign(
+      {
+        exp: Math.floor(Date.now() / 1000) + 60 * 60,
+        data: payload,
+      },
+      secret
+    );
+
+    if (token) {
+      res.status(200).json({ token });
+    }
     next();
   } catch (err) {
     console.log("ERORR : ", err);
