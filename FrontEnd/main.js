@@ -185,7 +185,7 @@ loginBtn.addEventListener("click", () => {
         password: String(formPassLogin.value),
       }),
     }).then((response) => {
-      if (response.status) {
+      if (response.status === 200) {
         response.json().then(({ token }) => isLogin(String(token)));
         success("ورود به سایت با موفقیت انجام شد");
       } else {
