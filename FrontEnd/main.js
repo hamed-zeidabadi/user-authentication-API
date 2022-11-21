@@ -116,7 +116,6 @@ let formEmail = document.getElementById("form_email");
 let formPass1 = document.getElementById("form_pass1");
 let formPass2 = document.getElementById("form_pass2");
 let listEmails = [];
-
 //get all emails from server
 async function getListEmails() {
   let response = await fetch("https://final-server.iran.liara.run/api/users");
@@ -154,7 +153,6 @@ registerBtn.addEventListener("click", () => {
     }).then((response) => {
       if (response.status) {
         success("ثبت نام با موفقیت انجام شد");
-        window.location.replace("http://127.0.0.1:5500/FrontEnd/admin/");
       } else {
         danger("اووپس ! مشکلی پیش اومده !");
         console.log("response:", response);
@@ -188,10 +186,8 @@ loginBtn.addEventListener("click", () => {
       }),
     }).then((response) => {
       if (response.status) {
-        console.log("login", response.json());
-
+        response.json().then(({ token }) => isLogin(String(token)));
         success("ورود به سایت با موفقیت انجام شد");
-        // window.location.replace("http://127.0.0.1:5500/FrontEnd/admin/");
       } else {
         danger("نام کاربری یا کلمه عبور اشتباه است !");
         console.log("response:", response);
@@ -199,3 +195,24 @@ loginBtn.addEventListener("click", () => {
     });
   }
 });
+
+// check login
+let is_login = false;
+
+function isLogin(token) {
+  if (token.trim().length > 1) {
+    is_Login = true;
+  } else {
+    is_login = false;
+  }
+}
+
+function handleUserLogin() {
+  if (isLogin) {
+    return window.location.replace("http://127.0.0.1:5500/FrontEnd/admin/");
+  } else {
+    return window.location.replace("http://127.0.0.1:5500/FrontEnd/");
+  }
+}
+
+// handleUserLogin();

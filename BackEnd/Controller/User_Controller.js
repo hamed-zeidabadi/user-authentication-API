@@ -6,7 +6,7 @@ const Joi = require("joi");
 exports.register = async (req, res, next) => {
   try {
     const { email, username, password } = await req.body;
-    console.log("body:", req.body);
+    // console.log("body:", req.body);
     // verify username
     const user = await User.findOne({ email });
     if (user) res.status(400).json({ message: "email does exist ! " });
@@ -96,7 +96,7 @@ exports.login = async (req, res, next) => {
 
     // verify password
     bcrypt.compare(password, user.password, (err, result) => {
-      console.log(result);
+      // console.log(result);
       if (!result) {
         res.status(400).json({
           message: "wrong password !",
