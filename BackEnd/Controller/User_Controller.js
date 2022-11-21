@@ -77,38 +77,35 @@ exports.login = async (req, res, next) => {
     }
 
     // verify password
-    const validatePassword = bcrypt.compare(password, user.password);
-
-    if (!validatePassword) {
-      res.status(400).json({
-        message: "wrong password !",
-      });
-    }
+    bcrypt.compare(password, user.password, (err, result) => {
+      console.log(result);
+      if (!result) {
+        res.status(400).json({
+          message: "wrong password !",
+        });
+      }
+    });
 
     // set JWT
-    const key = process.env.SECRET || "HaMeD_Zeidabadi";
+    const secret = process.env.SECRET || "HaMeD_Zeidabadi";
 
     const payload = {
       id: user.id,
       email: user.email,
     };
 
-    await JWT.sign(
-      payload,
-      key,
+    const token = JWT.sign(
       {
-        expiresIn: 3600 * 24 * 7,
+        exp: Math.floor(Date.now() / 1000) + 60 * 60,
+        data: payload,
       },
-
-      (err, token) => {
-        if (err) {
-          res.status(400).json({
-            message: err,
-          });
-        }
-        res.status(200).json({ token });
-      }
+      secret
     );
+
+    if (token) {
+      res.status(200).json({ token });
+    }
+
     next();
   } catch (err) {
     console.log("ERORR : ", err);

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-//Hard Code :)
+//Hard Code
 const DB =
   "mongodb://root:rpYPQkPmiFvRQXItxQTCgARJ@michael.iran.liara.ir:33510/my-app?authSource=admin&replicaSet=rs0&directConnection=true";
 

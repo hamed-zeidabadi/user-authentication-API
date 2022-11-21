@@ -115,9 +115,23 @@ let formName = document.getElementById("form_name");
 let formEmail = document.getElementById("form_email");
 let formPass1 = document.getElementById("form_pass1");
 let formPass2 = document.getElementById("form_pass2");
+let listEmails = [];
+
+//get all emails from server
+async function getListEmails() {
+  let response = await fetch("https://final-server.iran.liara.run/api/users");
+  const data = await response.json();
+  const email = await data.users.map((i) => i.email);
+  listEmails = email;
+  console.log("listemail:", listEmails);
+}
+getListEmails();
 
 registerBtn.addEventListener("click", () => {
-  if (!validateEmail(formEmail.value)) {
+  const userExist = listEmails.includes(formEmail.value); //check duplicate user
+  if (userExist) {
+    danger("ایمیل وارد شده تکراری میباشد ! لطفا وارد شوید !");
+  } else if (!validateEmail(formEmail.value)) {
     danger("ایمیل وارد شده معتبر نمیباشد !");
   } else if (!validateName(formName.value)) {
     danger("نام  باید حداقل 3 حرف باشد !");
@@ -126,7 +140,7 @@ registerBtn.addEventListener("click", () => {
   } else if (formPass1.value.trim().length < 6) {
     danger(" کلمه عبور حداقل  6 کاراکتر باشد");
   } else {
-    fetch("http://localhost:5000/api/register", {
+    fetch("https://final-server.iran.liara.run/api/register", {
       method: "post",
       headers: {
         Accept: "application/json",
@@ -154,13 +168,34 @@ let loginBtn = document.querySelector("#login-btn");
 let formPassLogin = document.getElementById("form_pass_login");
 let formEmailLogin = document.getElementById("form_email_login");
 loginBtn.addEventListener("click", () => {
+  const userExist = listEmails.includes(formEmailLogin.value); //check duplicate user
   if (!validateEmail(formEmailLogin.value)) {
     danger("ایمیل وارد شده معتبر نمیباشد !");
+  } else if (!userExist) {
+    danger("حساب کاربری ندارید ! لطفا ثبت نام کنید !");
   } else if (formPassLogin.value.trim().length < 1) {
     danger("لطفا کلمه عبور را وارد کنید !");
-  } else if (false) {
-    danger("نام کاربری یا کلمه عبور اشتباه است !");
   } else {
-    success("ورود به سایت با موفقیت انجام شد");
+    fetch("https://final-server.iran.liara.run/api/login", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: String(formEmailLogin.value),
+        password: String(formPassLogin.value),
+      }),
+    }).then((response) => {
+      if (response.status) {
+        console.log("login", response.json());
+
+        success("ورود به سایت با موفقیت انجام شد");
+        // window.location.replace("http://127.0.0.1:5500/FrontEnd/admin/");
+      } else {
+        danger("نام کاربری یا کلمه عبور اشتباه است !");
+        console.log("response:", response);
+      }
+    });
   }
 });
