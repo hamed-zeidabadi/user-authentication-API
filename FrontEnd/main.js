@@ -152,7 +152,9 @@ registerBtn.addEventListener("click", () => {
       }),
     }).then((response) => {
       if (response.status) {
+        window.localStorage.setItem("auth_token", String("inital_token"));
         success("ثبت نام با موفقیت انجام شد");
+        window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
       } else {
         danger("اووپس ! مشکلی پیش اومده !");
         console.log("response:", response);
@@ -186,10 +188,13 @@ loginBtn.addEventListener("click", () => {
       }),
     }).then((response) => {
       if (response.status === 200) {
-        response.json().then(({ token }) => window.localStorage.setItem("auth_token", String(token))
-        );
+        response
+          .json()
+          .then(({ token }) =>
+            window.localStorage.setItem("auth_token", String(token))
+          );
         success("ورود به سایت با موفقیت انجام شد");
-        handleUserLogin()
+        window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
       } else {
         danger("نام کاربری یا کلمه عبور اشتباه است !");
         console.log("response:", response);
@@ -198,13 +203,8 @@ loginBtn.addEventListener("click", () => {
   }
 });
 
-
 // check login
-async function handleUserLogin() {
-  const auth_token = "await window.localStorage.getItem('auth-token')";
-  console.log('auth', auth_token);
-  if (auth_token && auth_token.length > 6) {
-    return window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
-  }
+
+if (localStorage.getItem("auth_token") !== null) {
+  window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
 }
-handleUserLogin()

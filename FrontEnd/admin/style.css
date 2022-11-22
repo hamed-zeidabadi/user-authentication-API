@@ -380,3 +380,33 @@ footer > a {
     opacity: 1;
   }
 }
+
+.nav {
+  background: inherit;
+  height: 50px; /* set same as height & line-height below */
+  margin: 10px auto;
+  min-width: 200px;
+}
+
+.nav li {
+  display: inline-block;
+  list-style: none;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 40px;
+}
+
+.nav li:hover {
+  background: var(--clr-sh2);
+  transition: background 0.3s;
+  border-radius: 5px;
+}
+
+.nav-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+#exit-btn {
+  cursor: pointer;
+}
