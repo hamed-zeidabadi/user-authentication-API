@@ -152,8 +152,8 @@ registerBtn.addEventListener("click", () => {
       }),
     }).then((response) => {
       if (response.status) {
-        window.localStorage.setItem("auth_token", String("inital_token"));
         success("ثبت نام با موفقیت انجام شد");
+        window.localStorage.setItem("auth_token", String("inital_token"));
         window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
       } else {
         danger("اووپس ! مشکلی پیش اومده !");

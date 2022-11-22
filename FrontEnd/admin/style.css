@@ -410,3 +410,8 @@ footer > a {
 #exit-btn {
   cursor: pointer;
 }
+
+.search-container > input[type="text"] {
+  font-family: inherit;
+  font-size: 1em;
+}
