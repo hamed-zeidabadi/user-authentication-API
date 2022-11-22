@@ -3,16 +3,14 @@ const bcrypt = require("bcryptjs");
 const JWT = require("jsonwebtoken");
 const Joi = require("joi");
 
+//@POST /api/register
 exports.register = async (req, res, next) => {
   try {
     const { email, username, password } = await req.body;
-    // console.log("body:", req.body);
     // verify username
     const user = await User.findOne({ email });
     if (user) res.status(400).json({ message: "email does exist ! " });
-
     // data Validation
-
     const Schema = Joi.object({
       email: Joi.string().min(3).max(255).email().required(),
       username: Joi.string().min(2).max(255).required(),
@@ -26,12 +24,10 @@ exports.register = async (req, res, next) => {
     if (result.error) return res.send(result.error.message);
 
     // hash password
-
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hashSync(password, salt);
 
     // create new user
-
     const newUser = await new User({
       email,
       username,
@@ -65,6 +61,7 @@ exports.register = async (req, res, next) => {
   }
 };
 
+//@GET /api/users
 exports.allUser = async (req, res, next) => {
   try {
     // verify username
@@ -82,6 +79,7 @@ exports.allUser = async (req, res, next) => {
   }
 };
 
+//@POST /api/login
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = await req.body;

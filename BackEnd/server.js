@@ -21,7 +21,7 @@ app.use("/api", User_Route);
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join("./public")));
 
-//The 404 Route (ALWAYS Keep this as the last route)
+//The 404 Route
 app.get("*", function (req, res) {
   res.redirect("/");
 });
