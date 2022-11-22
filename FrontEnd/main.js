@@ -159,7 +159,7 @@ registerBtn.addEventListener("click", () => {
       if (response.status) {
         success("ثبت نام با موفقیت انجام شد");
         window.localStorage.setItem("auth_token", String("inital_token"));
-        window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
+        window.location.replace("/admin");
       } else {
         danger("اووپس ! مشکلی پیش اومده !");
         console.log("response:", response);
@@ -197,7 +197,7 @@ loginBtn.addEventListener("click", () => {
             window.localStorage.setItem("auth_token", String(token))
           );
         success("ورود به سایت با موفقیت انجام شد");
-        window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
+        window.location.replace("/admin");
       } else {
         danger("نام کاربری یا کلمه عبور اشتباه است !");
         console.log("response:", response);
@@ -209,5 +209,5 @@ loginBtn.addEventListener("click", () => {
 // check login
 
 if (localStorage.getItem("auth_token") !== null) {
-  window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
+  window.location.replace("/admin");
 }

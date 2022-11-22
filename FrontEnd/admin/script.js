@@ -187,7 +187,7 @@ function handleUserLogin() {
   const auth_token = localStorage.getItem("auth_token");
   console.log("auth", auth_token);
   if (!auth_token) {
-    return window.location.replace("http://127.0.0.1:5500/FrontEnd/");
+    return window.location.replace("/");
   }
 }
 
