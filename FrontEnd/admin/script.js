@@ -14,7 +14,6 @@ async function getEntries(value) {
 
   return new Promise((resolve, reject) => {
     try {
-      // @ts-ignore
       const xmlHttp = new XMLHttpRequest();
       xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -183,7 +182,31 @@ async function search(value, id) {
   }
 }
 
-/* Theme Icons */
+// check login
+function handleUserLogin() {
+  const auth_token = localStorage.getItem("auth_token");
+  console.log("auth", auth_token);
+  if (!auth_token) {
+    return window.location.replace("http://127.0.0.1:5500/FrontEnd/");
+  }
+}
+
+//handle back click
+window.onbeforeunload = function () {
+  return "Your work will be lost.";
+};
+
+//handle Exit from admin panel
+document.querySelector("#exit-btn").addEventListener("click", function () {
+  localStorage.clear();
+  handleUserLogin();
+});
+
+if (localStorage.getItem("auth_token") === null) {
+  handleUserLogin();
+}
+
+// theme icons
 const moon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
 								<path d="M24 42Q16.5 42 11.25 36.75Q6 31.5 6 24Q6 
 								17.25 9.975 12.55Q13.95 7.85 20.4 6.5Q22.45 6.1 23.2 7.2Q23.95 
@@ -226,27 +249,3 @@ const sun = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
 
 const selectLang = document.querySelector(".select-language");
 selectLang.value = language;
-
-// check login
-function handleUserLogin() {
-  const auth_token = localStorage.getItem("auth_token");
-  console.log("auth", auth_token);
-  if (!auth_token) {
-    return window.location.replace("http://127.0.0.1:5500/FrontEnd/");
-  }
-}
-
-//handle back click
-window.onbeforeunload = function () {
-  return "Your work will be lost.";
-};
-
-//handle Exit from admin panel
-document.querySelector("#exit-btn").addEventListener("click", function () {
-  localStorage.clear();
-  handleUserLogin();
-});
-
-if (localStorage.getItem("auth_token") === null) {
-  handleUserLogin();
-}

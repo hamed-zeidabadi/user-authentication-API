@@ -316,7 +316,7 @@ body.dark-theme .switch-theme::before {
   opacity: 1;
   transform: translateX(0);
 }
-
+//footer
 footer {
   padding: 1rem;
   text-align: center;
@@ -380,10 +380,10 @@ footer > a {
     opacity: 1;
   }
 }
-
+//navbar
 .nav {
   background: inherit;
-  height: 50px; /* set same as height & line-height below */
+  height: 50px;
   margin: 10px auto;
   min-width: 200px;
 }

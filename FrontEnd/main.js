@@ -6,6 +6,15 @@ let switchBtn = document.querySelectorAll(".switch-btn");
 let aContainer = document.querySelector("#a-container");
 let bContainer = document.querySelector("#b-container");
 let allButtons = document.querySelectorAll(".submit");
+let registerBtn = document.querySelector("#register-btn");
+let formName = document.getElementById("form_name");
+let formEmail = document.getElementById("form_email");
+let formPass1 = document.getElementById("form_pass1");
+let formPass2 = document.getElementById("form_pass2");
+let loginBtn = document.querySelector("#login-btn");
+let formPassLogin = document.getElementById("form_pass_login");
+let formEmailLogin = document.getElementById("form_email_login");
+let listEmails = [];
 
 let getButtons = (e) => e.preventDefault();
 
@@ -110,12 +119,6 @@ function validateName(name) {
   }
 }
 
-let registerBtn = document.querySelector("#register-btn");
-let formName = document.getElementById("form_name");
-let formEmail = document.getElementById("form_email");
-let formPass1 = document.getElementById("form_pass1");
-let formPass2 = document.getElementById("form_pass2");
-let listEmails = [];
 //get all emails from server
 async function getListEmails() {
   let response = await fetch("https://final-server.iran.liara.run/api/users");
@@ -125,6 +128,8 @@ async function getListEmails() {
   console.log("listemail:", listEmails);
 }
 getListEmails();
+
+//register
 
 registerBtn.addEventListener("click", () => {
   const userExist = listEmails.includes(formEmail.value); //check duplicate user
@@ -164,9 +169,7 @@ registerBtn.addEventListener("click", () => {
 });
 
 //login
-let loginBtn = document.querySelector("#login-btn");
-let formPassLogin = document.getElementById("form_pass_login");
-let formEmailLogin = document.getElementById("form_email_login");
+
 loginBtn.addEventListener("click", () => {
   const userExist = listEmails.includes(formEmailLogin.value); //check duplicate user
   if (!validateEmail(formEmailLogin.value)) {
