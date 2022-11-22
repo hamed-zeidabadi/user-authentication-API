@@ -137,13 +137,12 @@ async function search(value, id) {
             target="_blank"
 					>
 						<div class="image ${!page.thumbnail ? "default" : ""}">
-						${
-              page.thumbnail
-                ? `<img src="${page.thumbnail?.source}"
+						${page.thumbnail
+              ? `<img src="${page.thumbnail?.source}"
 								width="${page.thumbnail?.width || 256}"
 								height="${page.thumbnail?.height || 256}"
 							/>`
-                : `<svg xmlns="http://www.w3.org/2000/svg" 
+              : `<svg xmlns="http://www.w3.org/2000/svg" 
                      viewBox="0 0 48 48">
                      <path d="M15.35 34.05H26.1Q26.75 34.05 27.175 33.625Q27.6 
                      33.2 27.6 32.55Q27.6 31.9 27.175 31.475Q26.75 31.05 26.1 
@@ -226,3 +225,17 @@ const sun = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
 
 const selectLang = document.querySelector(".select-language");
 selectLang.value = language;
+
+// check login
+function handleUserLogin() {
+  const auth_token = localStorage.getItem("auth-token");
+  console.log('auth', auth_token);
+  if (!auth_token && auth_token.length < 6) {
+    return window.location.replace("http://127.0.0.1:5500/FrontEnd/");
+  }
+}
+
+handleUserLogin();
+
+//handle back click
+window.onbeforeunload = function () { return "Your work will be lost."; };

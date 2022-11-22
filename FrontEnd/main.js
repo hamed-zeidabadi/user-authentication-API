@@ -186,8 +186,10 @@ loginBtn.addEventListener("click", () => {
       }),
     }).then((response) => {
       if (response.status === 200) {
-        response.json().then(({ token }) => isLogin(String(token)));
+        response.json().then(({ token }) => window.localStorage.setItem("auth_token", String(token))
+        );
         success("ورود به سایت با موفقیت انجام شد");
+        handleUserLogin()
       } else {
         danger("نام کاربری یا کلمه عبور اشتباه است !");
         console.log("response:", response);
@@ -196,23 +198,13 @@ loginBtn.addEventListener("click", () => {
   }
 });
 
+
 // check login
-let is_login = false;
-
-function isLogin(token) {
-  if (token.trim().length > 1) {
-    is_Login = true;
-  } else {
-    is_login = false;
+async function handleUserLogin() {
+  const auth_token = "await window.localStorage.getItem('auth-token')";
+  console.log('auth', auth_token);
+  if (auth_token && auth_token.length > 6) {
+    return window.location.replace("http://127.0.0.1:5500/FrontEnd/admin");
   }
 }
-
-function handleUserLogin() {
-  if (isLogin) {
-    return window.location.replace("http://127.0.0.1:5500/FrontEnd/admin/");
-  } else {
-    return window.location.replace("http://127.0.0.1:5500/FrontEnd/");
-  }
-}
-
-// handleUserLogin();
+handleUserLogin()
